@@ -1,8 +1,8 @@
-const t = require("tap");
-const decache = require("decache");
+import t from "tap";
+import decache from "decache";
 
-// warm cache
-require("../lib/env-options");
+// Warm cache
+import "../lib/env-options";
 
 // preserve existing env
 const e = import.meta.env.DOTENV_CONFIG_ENCODING;
@@ -12,10 +12,15 @@ const o = import.meta.env.DOTENV_CONFIG_OVERRIDE;
 const dk = import.meta.env.DOTENV_CONFIG_DOTENV_KEY;
 
 // get fresh object for each test
-function options() {
+import decache from "decache";
+import envOptionsModule from "../lib/env-options.js";
+
+const options = () => {
   decache("../lib/env-options.js");
-  return require("../lib/env-options");
-}
+  return envOptionsModule;
+};
+
+export default options;
 
 function testOption(envVar, tmpVal, expect) {
   delete import.meta.env[envVar];

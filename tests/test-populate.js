@@ -1,9 +1,7 @@
-const fs = require("fs");
-
-const sinon = require("sinon");
-const t = require("tap");
-
-const dotenv = require("../lib/main");
+import fs from "fs";
+import sinon from "sinon";
+import t from "tap";
+import dotenv from "../lib/main";
 
 const mockParseResponse = { test: "foo" };
 let readFileSyncStub;

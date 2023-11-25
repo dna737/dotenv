@@ -1,9 +1,10 @@
-(function () {
-  require('./lib/main').config(
-    Object.assign(
-      {},
-      require('./lib/env-options'),
-      require('./lib/cli-options')(process.argv)
-    )
-  )
-})()
+import config from "./lib/main";
+import envOptions from "./lib/env-options";
+import cliOptions from "./lib/cli-options";
+
+(() => {
+  config({
+    ...envOptions,
+    ...cliOptions(process.argv),
+  });
+})();

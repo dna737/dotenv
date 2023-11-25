@@ -1,9 +1,10 @@
-const fs = require("fs");
-const crypto = require("crypto");
-const sinon = require("sinon");
-const t = require("tap");
+import fs from "fs";
+import crypto from "crypto";
+import sinon from "sinon";
+import t from "tap";
+import dotenv from "../lib/main";
 
-const dotenv = require("../lib/main");
+// Your code using fs, crypto, sinon, t, and dotenv goes here
 
 const testPath = "tests/.env";
 

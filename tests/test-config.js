@@ -1,11 +1,11 @@
-const fs = require("fs");
-const os = require("os");
-const path = require("path");
+import fs from "fs";
+import os from "os";
+import path from "path";
+import sinon from "sinon";
+import t from "tap";
+import dotenv from "../lib/main";
 
-const sinon = require("sinon");
-const t = require("tap");
-
-const dotenv = require("../lib/main");
+// Your code using fs, crypto, sinon, t, and dotenv goes here
 
 const mockParseResponse = { test: "foo" };
 let readFileSyncStub;
