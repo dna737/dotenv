@@ -5,6 +5,6 @@ import cliOptions from "./lib/cli-options";
 (() => {
   config({
     ...envOptions,
-    ...cliOptions(process.argv),
+    ...cliOptions(import.meta.argv),
   });
 })();
