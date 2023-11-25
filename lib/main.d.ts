@@ -1,6 +1,6 @@
 // TypeScript Version: 3.0
 /// <reference types="node" />
-import type { URL } from 'node:url';
+import type { URL } from "node:url";
 
 export interface DotenvParseOutput {
   [name: string]: string;
@@ -43,7 +43,7 @@ export interface DotenvConfigOptions {
    *
    * Turn on logging to help debug why certain keys or values are not being set as you expect.
    *
-   * example: `require('dotenv').config({ debug: process.env.DEBUG })`
+   * example: `require('dotenv').config({ debug: import.meta.env.DEBUG })`
    */
   debug?: boolean;
 
@@ -57,9 +57,9 @@ export interface DotenvConfigOptions {
   override?: boolean;
 
   /**
-   * Default: `process.env`
+   * Default: `import.meta.env`
    *
-   * Specify an object to write your secrets to. Defaults to process.env environment variables.
+   * Specify an object to write your secrets to. Defaults to import.meta.env environment variables.
    *
    * example: `const processEnv = {}; require('dotenv').config({ processEnv: processEnv })`
    */
@@ -68,7 +68,7 @@ export interface DotenvConfigOptions {
   /**
    * Default: `undefined`
    *
-   * Pass the DOTENV_KEY directly to config options. Defaults to looking for process.env.DOTENV_KEY environment variable. Note this only applies to decrypting .env.vault files. If passed as null or undefined, or not passed at all, dotenv falls back to its traditional job of parsing a .env file.
+   * Pass the DOTENV_KEY directly to config options. Defaults to looking for import.meta.env.DOTENV_KEY environment variable. Note this only applies to decrypting .env.vault files. If passed as null or undefined, or not passed at all, dotenv falls back to its traditional job of parsing a .env file.
    *
    * example: `require('dotenv').config({ DOTENV_KEY: 'dotenv://:key_1234…@dotenv.org/vault/.env.vault?environment=production' })`
    */
@@ -86,7 +86,7 @@ export interface DotenvPopulateOptions {
    *
    * Turn on logging to help debug why certain keys or values are not being set as you expect.
    *
-   * example: `require('dotenv').config({ debug: process.env.DEBUG })`
+   * example: `require('dotenv').config({ debug: import.meta.env.DEBUG })`
    */
   debug?: boolean;
 
@@ -109,7 +109,7 @@ export interface DotenvPopulateInput {
 }
 
 /**
- * Loads `.env` file contents into process.env by default. If `DOTENV_KEY` is present, it smartly attempts to load encrypted `.env.vault` file contents into process.env.
+ * Loads `.env` file contents into import.meta.env by default. If `DOTENV_KEY` is present, it smartly attempts to load encrypted `.env.vault` file contents into import.meta.env.
  *
  * See https://docs.dotenv.org
  *
@@ -120,7 +120,7 @@ export interface DotenvPopulateInput {
 export function config(options?: DotenvConfigOptions): DotenvConfigOutput;
 
 /**
- * Loads `.env` file contents into process.env.
+ * Loads `.env` file contents into import.meta.env.
  *
  * See https://docs.dotenv.org
  *
@@ -131,17 +131,21 @@ export function config(options?: DotenvConfigOptions): DotenvConfigOutput;
 export function configDotenv(options?: DotenvConfigOptions): DotenvConfigOutput;
 
 /**
- * Loads `source` json contents into `target` like process.env.
+ * Loads `source` json contents into `target` like import.meta.env.
  *
  * See https://docs.dotenv.org
  *
- * @param processEnv - the target JSON object. in most cases use process.env but you can also pass your own JSON object
+ * @param processEnv - the target JSON object. in most cases use import.meta.env but you can also pass your own JSON object
  * @param parsed - the source JSON object
  * @param options - additional options. example: `{ debug: true, override: false }`
  * @returns {void}
  *
  */
-export function populate(processEnv: DotenvPopulateInput, parsed: DotenvPopulateInput, options?: DotenvConfigOptions): DotenvPopulateOutput;
+export function populate(
+  processEnv: DotenvPopulateInput,
+  parsed: DotenvPopulateInput,
+  options?: DotenvConfigOptions
+): DotenvPopulateOutput;
 
 /**
  * Decrypt ciphertext

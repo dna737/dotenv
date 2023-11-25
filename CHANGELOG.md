@@ -14,13 +14,13 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Added
 
-- Optionally pass `DOTENV_KEY` to options rather than relying on `process.env.DOTENV_KEY`. Defaults to `process.env.DOTENV_KEY` [#754](https://github.com/motdotla/dotenv/pull/754)
+- Optionally pass `DOTENV_KEY` to options rather than relying on `import.meta.env.DOTENV_KEY`. Defaults to `import.meta.env.DOTENV_KEY` [#754](https://github.com/motdotla/dotenv/pull/754)
 
 ## [16.2.0](https://github.com/motdotla/dotenv/compare/v16.1.4...v16.2.0) (2023-06-15)
 
 ### Added
 
-- Optionally write to your own target object rather than `process.env`. Defaults to `process.env`. [#753](https://github.com/motdotla/dotenv/pull/753)
+- Optionally write to your own target object rather than `import.meta.env`. Defaults to `import.meta.env`. [#753](https://github.com/motdotla/dotenv/pull/753)
 - Add import type URL to types file [#751](https://github.com/motdotla/dotenv/pull/751)
 
 ## [16.1.4](https://github.com/motdotla/dotenv/compare/v16.1.3...v16.1.4) (2023-06-04)
@@ -171,38 +171,38 @@ If you had values containing the backtick character, please quote those values w
 
 ### Changed
 
-* Hide comments and newlines from debug output ([#404](https://github.com/motdotla/dotenv/pull/404))
+- Hide comments and newlines from debug output ([#404](https://github.com/motdotla/dotenv/pull/404))
 
 ## [13.0.0](https://github.com/motdotla/dotenv/compare/v12.0.4...v13.0.0) (2022-01-16)
 
 ### Added
 
-* _Breaking:_ Add type file for `config.js` ([#539](https://github.com/motdotla/dotenv/pull/539))
+- _Breaking:_ Add type file for `config.js` ([#539](https://github.com/motdotla/dotenv/pull/539))
 
 ## [12.0.4](https://github.com/motdotla/dotenv/compare/v12.0.3...v12.0.4) (2022-01-16)
 
 ### Changed
 
-* README updates
-* Minor order adjustment to package json format
+- README updates
+- Minor order adjustment to package json format
 
 ## [12.0.3](https://github.com/motdotla/dotenv/compare/v12.0.2...v12.0.3) (2022-01-15)
 
 ### Changed
 
-* Simplified jsdoc for consistency across editors
+- Simplified jsdoc for consistency across editors
 
 ## [12.0.2](https://github.com/motdotla/dotenv/compare/v12.0.1...v12.0.2) (2022-01-15)
 
 ### Changed
 
-* Improve embedded jsdoc type documentation
+- Improve embedded jsdoc type documentation
 
 ## [12.0.1](https://github.com/motdotla/dotenv/compare/v12.0.0...v12.0.1) (2022-01-15)
 
 ### Changed
 
-* README updates and clarifications
+- README updates and clarifications
 
 ## [12.0.0](https://github.com/motdotla/dotenv/compare/v11.0.0...v12.0.0) (2022-01-15)
 
@@ -336,7 +336,7 @@ If you had values containing the backtick character, please quote those values w
 ### Changed
 
 - _Breaking_: default `path` is now `path.resolve(process.cwd(), '.env')`
-- _Breaking_: does not write over keys already in `process.env` if the key has a falsy value
+- _Breaking_: does not write over keys already in `import.meta.env` if the key has a falsy value
 - using `const` and `let` instead of `var`
 
 ### Removed

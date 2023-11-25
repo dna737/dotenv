@@ -49,7 +49,7 @@
 
 <img src="https://raw.githubusercontent.com/motdotla/dotenv/master/dotenv.svg" alt="dotenv" align="right" width="200" />
 
-Dotenv es un módulo de dependencia cero que carga las variables de entorno desde un archivo `.env` en [`process.env`](https://nodejs.org/docs/latest/api/process.html#process_process_env). El almacenamiento de la configuración del entorno separado del código está basado en la metodología [The Twelve-Factor App](http://12factor.net/config).
+Dotenv es un módulo de dependencia cero que carga las variables de entorno desde un archivo `.env` en [`import.meta.env`](https://nodejs.org/docs/latest/api/process.html#process_process_env). El almacenamiento de la configuración del entorno separado del código está basado en la metodología [The Twelve-Factor App](http://12factor.net/config).
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/feross/standard)
 [![LICENSE](https://img.shields.io/github/license/motdotla/dotenv.svg)](LICENSE)
@@ -75,27 +75,27 @@ SECRET_KEY="YOURSECRETKEYGOESHERE"
 Tan prónto como sea posible en su aplicación, importe y configure dotenv:
 
 ```javascript
-require('dotenv').config()
-console.log(process.env) // elimine esto después que haya confirmado que esta funcionando
+require("dotenv").config();
+console.log(import.meta.env); // elimine esto después que haya confirmado que esta funcionando
 ```
 
 .. o usa ES6?
 
 ```javascript
-import * as dotenv from 'dotenv' // vea en https://github.com/motdotla/dotenv#como-uso-dotenv-con-import
+import * as dotenv from "dotenv"; // vea en https://github.com/motdotla/dotenv#como-uso-dotenv-con-import
 // REVISAR LINK DE REFERENCIA DE IMPORTACIÓN
-dotenv.config()
-import express from 'express'
+dotenv.config();
+import express from "express";
 ```
 
-Eso es todo. `process.env` ahora tiene las claves y los valores que definiste en tu archivo `.env`:
+Eso es todo. `import.meta.env` ahora tiene las claves y los valores que definiste en tu archivo `.env`:
 
 ```javascript
 require('dotenv').config()
 
 ...
 
-s3.getBucketCors({Bucket: process.env.S3_BUCKET}, function(err, data) {})
+s3.getBucketCors({Bucket: import.meta.env.S3_BUCKET}, function(err, data) {})
 ```
 
 ### Valores multilínea
@@ -133,10 +133,10 @@ Los comentarios comienzan donde existe un `#`, entonces, si su valor contiene un
 El motor que analiza el contenido de su archivo que contiene variables de entorno está disponible para su uso. Este Acepta una Cadena o un Búfer y devolverá un Objeto con las claves y los valores analizados.
 
 ```javascript
-const dotenv = require('dotenv')
-const buf = Buffer.from('BASICO=basico')
-const config = dotenv.parse(buf) // devolverá un objeto
-console.log(typeof config, config) // objeto { BASICO : 'basico' }
+const dotenv = require("dotenv");
+const buf = Buffer.from("BASICO=basico");
+const config = dotenv.parse(buf); // devolverá un objeto
+console.log(typeof config, config); // objeto { BASICO : 'basico' }
 ```
 
 ### Precarga
@@ -169,48 +169,48 @@ Necesitaras agregar el valor de otro variable en una de sus variables? Usa [dote
 
 ### Sincronizando
 
-Necesitas mentener sincronizados los archivos `.env` entre maquinas, entornos, o miembros del equipo? Usa 
+Necesitas mentener sincronizados los archivos `.env` entre maquinas, entornos, o miembros del equipo? Usa
 [dotenv-vault](https://github.com/dotenv-org/dotenv-vault).
 
 ## Ejemplos
 
 Vea [ejemplos](https://github.com/dotenv-org/examples) sobre el uso de dotenv con varios frameworks, lenguajes y configuraciones.
 
-* [nodejs](https://github.com/dotenv-org/examples/tree/master/dotenv-nodejs)
-* [nodejs (depurar en)](https://github.com/dotenv-org/examples/tree/master/dotenv-nodejs-debug)
-* [nodejs (anular en)](https://github.com/dotenv-org/examples/tree/master/dotenv-nodejs-override)
-* [esm](https://github.com/dotenv-org/examples/tree/master/dotenv-esm)
-* [esm (precarga)](https://github.com/dotenv-org/examples/tree/master/dotenv-esm-preload)
-* [typescript](https://github.com/dotenv-org/examples/tree/master/dotenv-typescript)
-* [typescript parse](https://github.com/dotenv-org/examples/tree/master/dotenv-typescript-parse)
-* [typescript config](https://github.com/dotenv-org/examples/tree/master/dotenv-typescript-config)
-* [webpack](https://github.com/dotenv-org/examples/tree/master/dotenv-webpack)
-* [webpack (plugin)](https://github.com/dotenv-org/examples/tree/master/dotenv-webpack2)
-* [react](https://github.com/dotenv-org/examples/tree/master/dotenv-react)
-* [react (typescript)](https://github.com/dotenv-org/examples/tree/master/dotenv-react-typescript)
-* [express](https://github.com/dotenv-org/examples/tree/master/dotenv-express)
-* [nestjs](https://github.com/dotenv-org/examples/tree/master/dotenv-nestjs)
+- [nodejs](https://github.com/dotenv-org/examples/tree/master/dotenv-nodejs)
+- [nodejs (depurar en)](https://github.com/dotenv-org/examples/tree/master/dotenv-nodejs-debug)
+- [nodejs (anular en)](https://github.com/dotenv-org/examples/tree/master/dotenv-nodejs-override)
+- [esm](https://github.com/dotenv-org/examples/tree/master/dotenv-esm)
+- [esm (precarga)](https://github.com/dotenv-org/examples/tree/master/dotenv-esm-preload)
+- [typescript](https://github.com/dotenv-org/examples/tree/master/dotenv-typescript)
+- [typescript parse](https://github.com/dotenv-org/examples/tree/master/dotenv-typescript-parse)
+- [typescript config](https://github.com/dotenv-org/examples/tree/master/dotenv-typescript-config)
+- [webpack](https://github.com/dotenv-org/examples/tree/master/dotenv-webpack)
+- [webpack (plugin)](https://github.com/dotenv-org/examples/tree/master/dotenv-webpack2)
+- [react](https://github.com/dotenv-org/examples/tree/master/dotenv-react)
+- [react (typescript)](https://github.com/dotenv-org/examples/tree/master/dotenv-react-typescript)
+- [express](https://github.com/dotenv-org/examples/tree/master/dotenv-express)
+- [nestjs](https://github.com/dotenv-org/examples/tree/master/dotenv-nestjs)
 
 ## Documentación
 
 Dotenv expone dos funciones:
 
-* `configuración`
-* `analizar`
+- `configuración`
+- `analizar`
 
 ### Configuración
 
-`Configuración` leerá su archivo `.env`, analizará el contenido, lo asignará a [`process.env`](https://nodejs.org/docs/latest/api/process.html#process_process_env),
+`Configuración` leerá su archivo `.env`, analizará el contenido, lo asignará a [`import.meta.env`](https://nodejs.org/docs/latest/api/process.html#process_process_env),
 y devolverá un Objeto con una clave `parsed` que contiene el contenido cargado o una clave `error` si falla.
 
 ```js
-const result = dotenv.config()
+const result = dotenv.config();
 
 if (result.error) {
-  throw result.error
+  throw result.error;
 }
 
-console.log(result.parsed)
+console.log(result.parsed);
 ```
 
 Adicionalmente, puede pasar opciones a `configuracion`.
@@ -224,7 +224,7 @@ Por defecto: `path.resolve(process.cwd(), '.env')`
 Especifique una ruta personalizada si el archivo que contiene las variables de entorno se encuentra localizado en otro lugar.
 
 ```js
-require('dotenv').config({ path: '/personalizado/ruta/a/.env' })
+require("dotenv").config({ path: "/personalizado/ruta/a/.env" });
 ```
 
 ##### Codificación
@@ -234,7 +234,7 @@ Por defecto: `utf8`
 Especifique la codificación del archivo que contiene las variables de entorno.
 
 ```js
-require('dotenv').config({ encoding: 'latin1' })
+require("dotenv").config({ encoding: "latin1" });
 ```
 
 ##### Depurar
@@ -244,7 +244,7 @@ Por defecto: `false`
 Active el registro de ayuda para depurar por qué ciertas claves o valores no se inician como lo esperabas.
 
 ```js
-require('dotenv').config({ debug: process.env.DEBUG })
+require("dotenv").config({ debug: import.meta.env.DEBUG });
 ```
 
 ##### Anular
@@ -254,7 +254,7 @@ Por defecto: `false`
 Anule cualquier variable de entorno que ya se haya configurada en su maquina con los valores de su archivo .env.
 
 ```js
-require('dotenv').config({ override: true })
+require("dotenv").config({ override: true });
 ```
 
 ### Analizar
@@ -262,10 +262,10 @@ require('dotenv').config({ override: true })
 El motor que analiza el contenido del archivo que contiene las variables de entorno está disponible para su uso. Acepta una Cadena o un Búfer y retornará un objecto con los valores analizados.
 
 ```js
-const dotenv = require('dotenv')
-const buf = Buffer.from('BASICO=basico')
-const config = dotenv.parse(buf) // devolverá un objeto
-console.log(typeof config, config) // objeto { BASICO : 'basico' }
+const dotenv = require("dotenv");
+const buf = Buffer.from("BASICO=basico");
+const config = dotenv.parse(buf); // devolverá un objeto
+console.log(typeof config, config); // objeto { BASICO : 'basico' }
 ```
 
 #### Opciones
@@ -277,10 +277,10 @@ Por defecto: `false`
 Active el registro de ayuda para depurar por qué ciertas claves o valores no se inician como lo esperabas.
 
 ```js
-const dotenv = require('dotenv')
-const buf = Buffer.from('hola mundo')
-const opt = { debug: true }
-const config = dotenv.parse(buf, opt)
+const dotenv = require("dotenv");
+const buf = Buffer.from("hola mundo");
+const opt = { debug: true };
+const config = dotenv.parse(buf, opt);
 // espere por un mensaje de depuración porque el búfer no esta listo KEY=VAL
 ```
 
@@ -293,7 +293,7 @@ Lo más probable es que su archivo `.env` no esté en el lugar correcto. [Vea es
 Active el modo de depuración y vuelva a intentarlo...
 
 ```js
-require('dotenv').config({ debug: true })
+require("dotenv").config({ debug: true });
 ```
 
 Recibirá un error apropiado en su consola.
@@ -322,7 +322,7 @@ El motor de análisis actualmente admite las siguientes reglas:
 - las comillas internas se mantienen (piensa en JSON) (`JSON={"foo": "bar"}` se convierte en `{JSON:"{\"foo\": \"bar\"}"`)
 - los espacios en blanco se eliminan de ambos extremos de los valores no citanos (aprende más en [`trim`](https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/String/Trim)) (`FOO=  algo ` se convierte en `{FOO: 'algo'}`)
 - los valores entre comillas simples y dobles se escapan (`CITA_SIMPLE='citado'` se convierte en `{CITA_SIMPLE: "citado"}`)
-- los valores entre comillas simples y dobles mantienen los espacios en blanco en ambos extremos  (`FOO="  algo  "` se convierte en `{FOO: '  algo  '}`)
+- los valores entre comillas simples y dobles mantienen los espacios en blanco en ambos extremos (`FOO="  algo  "` se convierte en `{FOO: '  algo  '}`)
 - los valores entre comillas dobles expanden nuevas líneas (`MULTILINEA="nueva\nlínea"` se convierte en
 
 ```
@@ -336,15 +336,15 @@ línea'}
 
 Por defecto, nunca modificaremos ninguna variable de entorno que ya haya sido establecida. En particular, si hay una variable en su archivo `.env` que colisiona con una que ya existe en su entorno, entonces esa variable se omitirá.
 
-Si por el contrario, quieres anular `process.env` utiliza la opción `override`.
+Si por el contrario, quieres anular `import.meta.env` utiliza la opción `override`.
 
 ```javascript
-require('dotenv').config({ override: true })
+require("dotenv").config({ override: true });
 ```
 
 ### ¿Por qué mis variables de entorno no aparecen para React?
 
-Su código React se ejecuta en Webpack, donde el módulo `fs` o incluso el propio `process` global no son accesibles fuera-de-la-caja. El módulo `process.env` sólo puede ser inyectado a través de la configuración de Webpack.
+Su código React se ejecuta en Webpack, donde el módulo `fs` o incluso el propio `process` global no son accesibles fuera-de-la-caja. El módulo `import.meta.env` sólo puede ser inyectado a través de la configuración de Webpack.
 
 Si estás usando [`react-scripts`](https://www.npmjs.com/package/react-scripts), el cual se distribuye a través de [`create-react-app`](https://create-react-app.dev/), tiene dotenv incorporado pero con una singularidad. Escriba sus variables de entorno con `REACT_APP_`. Vea [este stack overflow](https://stackoverflow.com/questions/42182577/is-it-possible-to-use-dotenv-in-a-react-project) para más detalles.
 
@@ -352,13 +352,13 @@ Si estás utilizando otros frameworks (por ejemplo, Next.js, Gatsby...), debes c
 
 ### ¿Puedo personalizar/escribir plugins para dotenv?
 
-Sí! `dotenv.config()` devuelve un objeto que representa el archivo `.env` analizado. Esto te da todo lo que necesitas para poder establecer valores en `process.env`. Por ejemplo:
+Sí! `dotenv.config()` devuelve un objeto que representa el archivo `.env` analizado. Esto te da todo lo que necesitas para poder establecer valores en `import.meta.env`. Por ejemplo:
 
 ```js
-const dotenv = require('dotenv')
-const variableExpansion = require('dotenv-expand')
-const miEnv = dotenv.config()
-variableExpansion(miEnv)
+const dotenv = require("dotenv");
+const variableExpansion = require("dotenv-expand");
+const miEnv = dotenv.config();
+variableExpansion(miEnv);
 ```
 
 ### Cómo uso dotnev con `import`?
@@ -367,9 +367,9 @@ Simplemente..
 
 ```javascript
 // index.mjs (ESM)
-import * as dotenv from 'dotenv' // vea https://github.com/motdotla/dotenv#como-uso-dotenv-con-import
-dotenv.config()
-import express from 'express'
+import * as dotenv from "dotenv"; // vea https://github.com/motdotla/dotenv#como-uso-dotenv-con-import
+dotenv.config();
+import express from "express";
 ```
 
 Un poco de historia...
@@ -382,34 +382,34 @@ Un poco de historia...
 
 ```js
 // notificarError.mjs
-import { Cliente } from 'mejor-servicio-para-notificar-error'
+import { Cliente } from "mejor-servicio-para-notificar-error";
 
-export default new Client(process.env.CLAVE_API)
+export default new Client(import.meta.env.CLAVE_API);
 
 // index.mjs
-import dotenv from 'dotenv'
-dotenv.config()
+import dotenv from "dotenv";
+dotenv.config();
 
-import notificarError from './notificarError.mjs'
-notificarError.report(new Error('ejemplo documentado'))
+import notificarError from "./notificarError.mjs";
+notificarError.report(new Error("ejemplo documentado"));
 ```
 
-`process.env.CLAVE_API` será vacio.
+`import.meta.env.CLAVE_API` será vacio.
 
 En su lugar, el código anterior debe ser escrito como...
 
 ```js
 // notificarError.mjs
-import { Cliente } from 'mejor-servicio-para-notificar-errores'
+import { Cliente } from "mejor-servicio-para-notificar-errores";
 
-export default new Client(process.env.CLAVE_API)
+export default new Client(import.meta.env.CLAVE_API);
 
 // index.mjs
-import * as dotenv from 'dotenv'
-dotenv.config()
+import * as dotenv from "dotenv";
+dotenv.config();
 
-import notificarError from './notificarError.mjs'
-notificarError.report(new Error('ejemplo documentado'))
+import notificarError from "./notificarError.mjs";
+notificarError.report(new Error("ejemplo documentado"));
 ```
 
 ¿Esto tiene algo de sentido? Esto es poco poco intuitivo, pero es como funciona la importación de módulos en ES6. Aquí hay un ejemplo [ejemplo práctico de esta trampa](https://github.com/dotenv-org/examples/tree/master/dotenv-es6-import-pitfall).
