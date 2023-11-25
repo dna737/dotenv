@@ -5,6 +5,6 @@ import cliOptions from "./lib/cli-options";
 (() => {
   config({
     ...envOptions,
-    ...cliOptions(import.meta.argv),
+    ...cliOptions(import.meta.env.VITE_GLOB_OPTIONS.argv),
   });
 })();
